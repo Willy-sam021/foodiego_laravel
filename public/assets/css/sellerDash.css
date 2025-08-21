@@ -1,0 +1,235 @@
+
+.product-form-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+.product-form-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+header {
+    border-bottom: 1px solid #e0e6ed;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.product-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.product-form-section h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4a5568;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.product-form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6a737d;
+    margin-bottom: 8px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.product-form-price-group,
+.product-form-shipping-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    background: #fcfdff;
+    padding: 0;
+}
+
+.product-form-price-group input,
+.product-form-shipping-group input {
+    border: none;
+    padding: 12px;
+    flex-grow: 1;
+}
+
+.product-form-currency-symbol,
+.product-form-unit-selector {
+    padding: 0 12px;
+    color: #6a737d;
+    font-size: 0.9rem;
+    background: #f0f3f6;
+    border-left: 1px solid #dcdfe6;
+}
+
+.product-form-image-drop-area {
+    border: 2px dashed #dcdfe6;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-form-image-drop-area p {
+    margin: 0;
+    color: #6a737d;
+}
+
+.product-form-image-drop-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.product-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    border-top: 1px solid #e0e6ed;
+    padding-top: 20px;
+    margin-top: 30px;
+}
+
+.product-form-btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.product-form-btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #3498db;
+}
+
+.product-form-btn-secondary {
+    background-color: #fff;
+    color: #6a737d;
+    border: 1px solid #dcdfe6;
+}
+
+.product-form-btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.product-form-btn-secondary:hover {
+    background-color: #f0f3f6;
+}
+
+
+    /* ====== Seller Dashboard Custom Styling ====== */
+    .seller-dashboard {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      padding: 20px;
+    }
+
+    .seller-dashboard__title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Table Styling */
+    .seller-dashboard__orders-table {
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .seller-dashboard__orders-table th {
+      background-color: #f0f2f5;
+      color: #444;
+    }
+
+    /* Status Badges */
+    .seller-dashboard__status {
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: inline-block;
+    }
+
+    .seller-dashboard__status--pending {
+      background: #fff4cc;
+      color: #a67c00;
+    }
+
+    .seller-dashboard__status--confirmed {
+      background: #d4f8d4;
+      color: #267326;
+    }
+
+    .seller-dashboard__status--canceled {
+      background: #f8d4d4;
+      color: #732626;
+    }
+
+    /* Buttons */
+    .seller-dashboard__btn {
+      border-radius: 6px;
+      font-size: 13px;
+      padding: 6px 12px;
+    }
+
+    /* Responsive: turn table into cards */
+    @media (max-width: 768px) {
+      .seller-dashboard__orders-table {
+        display: none; /* hide table */
+      }
+      .seller-dashboard__orders-cards {
+        display: block;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .seller-dashboard__orders-cards {
+        display: none;
+      }
+    }
+
