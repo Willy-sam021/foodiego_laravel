@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\IsSeller as seller;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth','verified')->get('/',[HomeController::class, 'index'])->name('homePage');
+Route::middleware('auth', 'verified')->get('/',[HomeController::class, 'index'])->name('homePage');
 
 
 

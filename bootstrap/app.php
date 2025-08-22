@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\IsAdminMiddleware;
+use App\Http\Middleware\MultiAuthMiddleWare;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -33,6 +35,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path("routes/user.php"));
             Route::middleware("web")
                 ->group(base_path('routes/payment.php'));
+            Route::middleware("web")
+            ->group(base_path('routes/admin.php'));
+
 
         }
     )
@@ -40,6 +45,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
         'seller' => \App\Http\Middleware\IsSeller::class,
         'orderPage'=> OrderPageMiddleWare::class,
+        'admin'=> IsAdminMiddleware::class,
     ]);
     })
     ->withExceptions(function (Exceptions $exception) {

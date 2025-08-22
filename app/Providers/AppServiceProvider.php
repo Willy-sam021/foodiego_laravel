@@ -16,6 +16,8 @@ use App\Services\PaymentService;
 use App\Repositories\PaymentRepository;
 use App\Models\Payment;
 use App\Observers\PaymentObserver;
+use App\Services\AdminService;
+use App\Repositories\AdminRepository;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -45,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(PaymentService::class, function(){
             return new PaymentService(new PaymentRepository, new OrderRepository);
+        });
+        $this->app->bind(AdminService::class, function(){
+            return new AdminService(new AdminRepository);
         });
 
 

@@ -10,17 +10,15 @@
                     <div class="col-md-4 ">
                         <!--Data or Content-->
                         <div class="">
-                            <h2>Hello!</h2>
-                            <form action="{{route('register')}}" method='GET'>
-                                @csrf
-                                <button class="btn btn-success" >Sign up</button>
-                            </form>
+                            <h2>Hello Admin!</h2>
+
                         </div>
                     </div>
                     <div class="col-md-8">
                         <!--Forms-->
                         <div>
-                            <form action="{{route('login')}}" method="POST">
+                            
+                            <form action="{{route('adminLogin')}}" method="POST">
                                 @csrf
                                 <h1>Login Form</h1>
                                 <div class="row mb-3">
@@ -41,26 +39,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="row ">
-                                    <!-- Remember Me -->
-                                    <div class="col-6">
-                                        <div class="">
-                                            <label for="remember_me" class="">
-                                                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                                                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="">
-                                            @if (Route::has('password.request'))
-                                            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                                                {{ __('Forgot your password?') }}
-                                            </a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="mt-3 text-center">
                                     <button class="btn btn-primary" >Login</button>
