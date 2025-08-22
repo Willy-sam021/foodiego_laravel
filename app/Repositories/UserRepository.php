@@ -3,9 +3,22 @@ namespace App\Repositories;
 use App\Models\User;
 
 class UserRepository implements IRepository {
+
     public function all(){
         $data= User::all();
         return $data;
+    }
+
+    public function Buyers(){
+       $buyers = User::buyer()->get();
+       return $buyers;
+
+    }
+
+    public function Sellers(){
+       $sellers = User::allsellers()->get();
+       return $sellers;
+
     }
 
     public function findById($id){
@@ -25,12 +38,10 @@ class UserRepository implements IRepository {
         }
         return null;
     }
-    public function delete($id){
-        $user = $this->findById($id);
-        if ($user) {
-            return $user->delete();
-        }
-        return false;
+    public function delete($user){
+
+        return $user->delete();
+
     }
 
     public function switchToSeller($id){

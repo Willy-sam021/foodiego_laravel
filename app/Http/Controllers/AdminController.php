@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Services\AdminService;
+use App\Models\User;
 use Illuminate\Support\Facades\Password;
 
 
@@ -57,4 +58,30 @@ class AdminController extends Controller
     public function viewDashboard(){
         return view('admin.adminDashboard');
     }
+
+    public function getAllBuyers(){
+        $buyers = $this->adminService->getAllBuyers();
+        return view('admin.viewAllBuyers',compact('buyers'));
+    }
+    public function getAllSellers(){
+        $sellers = $this->adminService->getAllSellers();
+        return view('admin.viewAllSellers',compact('sellers'));
+    }
+
+    public function userDetail(User $user){
+        $allOrders = $this->adminService->getOrderCollection($user);
+        return view('admin.viewSellerDetails',['seller'=>$user,'orders'=>$allOrders]);
+    }
+
+    public function deleteUser(User $user){
+        $delete = $this->adminService->deleteUser($user);
+        if($delete){
+            return redirect()->back()->with('success', 'Delete successful');
+        }else{
+            return redirect()->back()->with('error', 'Failed to Delete ');
+        }
+    }
+
+
+
 }

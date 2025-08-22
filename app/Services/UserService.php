@@ -15,7 +15,7 @@ class UserService {
         if($data->isEmpty()){
             return [];
         }
-        return $data->toArray();
+        return $data;
     }
 
     public function getUserById($id){

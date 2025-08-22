@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
             return new PaymentService(new PaymentRepository, new OrderRepository);
         });
         $this->app->bind(AdminService::class, function(){
-            return new AdminService(new AdminRepository);
+            return new AdminService(new AdminRepository, new UserRepository, new OrderRepository);
         });
 
 

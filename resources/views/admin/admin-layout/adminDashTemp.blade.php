@@ -17,6 +17,10 @@
 	<title>@yield('title','admin Dashboard')</title>
 
 	<link href="{{asset('User_dashboard/css/app.css')}}" rel="stylesheet">
+	<link href="{{asset('css/adminBuyerTemp.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -46,8 +50,14 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('seller.register')}}">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Switch to Seller</span>
+						<a class="sidebar-link" href="{{route('allBuyers')}}">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Buyers</span>
+                        </a>
+					</li>
+
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('allSellers')}}">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Sellers</span>
                         </a>
 					</li>
 

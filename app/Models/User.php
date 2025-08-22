@@ -64,4 +64,14 @@ public function cart(){
     return $this->hasMany(Cart::class);
 }
 
+public function scopeBuyer($query)
+{
+    return $query->where('is_seller', false);
+}
+
+public function scopeAllSellers($query)
+{
+    return $query->where('is_seller', true);
+}
+
 }
