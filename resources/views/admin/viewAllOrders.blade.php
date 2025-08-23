@@ -4,10 +4,12 @@
 <main class="content">
 
 <div class="container-fluid py-4">
+    {{-- ORDER SECTION --}}
+<div class="container-fluid py-4">
     <div class="row align-items-center mb-4">
         <div class="col-md-6">
-            <h2 class="mb-0 fw-bold text-dark">Orders Dashboard</h2>
-            <p class="text-muted">Manage and view all Orders.</p>
+            <h2 class="mb-0 fw-bold text-dark">Order Section</h2>
+            <p class="text-muted">view and manage all Orders.</p>
         </div>
         <div class="col-md-6 d-flex justify-content-md-end">
             <div class="input-group" style="max-width: 300px;">
@@ -26,10 +28,10 @@
                     <div class="d-flex align-items-center">
                         <i class="fas fa-users fa-2x me-3"></i>
                         <div>
-                            <h5 class="card-title text-white mb-0">Total Buyers</h5>
-                            <h2 class="display-5 fw-bold text-white mb-0">
-                                <?php echo count($buyers); ?>
-                            </h2>
+                            <h5 class="card-title text-white mb-0">All orders</h5>
+                            {{-- <h2 class="display-5 fw-bold text-white mb-0">
+                                <?php echo count($orders); ?>
+                            </h2> --}}
                         </div>
                     </div>
                 </div>
@@ -41,41 +43,49 @@
         <div class="col-12">
             <div class="card admin-buyers-card">
                 <div class="admin-buyers-card-header">
-                    <h5 class="mb-0 text-dark">All Buyers</h5>
+                    <h5 class="mb-0 text-dark">Order</h5>
                 </div>
                 <div class="admin-buyers-card-body p-0">
                     <div class="table-responsive">
                         <table class="table admin-buyers-table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Buyer ID</th>
+                                    <th>S/N</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Registration Date</th>
-                                    <th class="text-center">Actions</th>
+                                    <th>Total</th>
+                                    <th>payment status</th>
+                                    <th>Delivery date</th>
+                                    <th class="text-center">view more</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php if (!empty($buyers)): ?>
-                                    <?php foreach ($buyers as $buyer): ?>
-                                        <tr>
-                                            <td><h6 class="mb-0 text-sm">#<?= htmlspecialchars($buyer['buyer_id']) ?></h6></td>
-                                            <td><p class="text-sm font-weight-bold mb-0 text-capitalize"><?= htmlspecialchars($buyer['buyer_fname'] . ' ' . $buyer['buyer_lname']) ?></p></td>
-                                            <td><p class="text-sm mb-0"><?= htmlspecialchars($buyer['buyer_email']) ?></p></td>
-                                            <td><p class="text-sm mb-0"><?= htmlspecialchars($buyer['buyer_phone']) ?></p></td>
-                                            <td><p class="text-sm mb-0"><?= htmlspecialchars(date('M d, Y', strtotime($buyer['created_at']))) ?></p></td>
-                                            <td class="text-center admin-buyers-btn-group">
-                                                <button class="btn btn-sm btn-info me-2">View</button>
-                                                <button class="btn btn-sm btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <tr>
-                                        <td colspan="6" class="text-center text-muted">No buyers found.</td>
-                                    </tr>
-                                <?php endif; ?>
+                            <tbody >
+
+                             @forelse ($orders as $order )
+                              {{-- {{dd($orders)}} --}}
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+
+                                    <td>{{$order->user->name}}</td>
+
+                                    <td>{{$order->total_price}}</td>
+
+                                    <td>{{$order->payment_status}}</td>
+
+                                    <td>{{$order->delivery_date}}</td>
+
+                                    <td class="text-center admin-buyers-btn-group">
+                                        <a href= {{route('orderDetails',['order'=>$order->id])}} class="text-decoration-none btn btn-sm btn-info me-2">View more</a>
+                                    </td>
+
+                                </tr>
+
+                            @empty
+                                <td>
+                                    <p class="alert alert-danger">Nothing to show here</p>
+                                </td>
+                            @endforelse
+
                             </tbody>
                         </table>
                     </div>
@@ -84,5 +94,6 @@
         </div>
     </div>
 </div>
+
 </main>
 @endsection

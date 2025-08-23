@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Order;
 use App\Services\AdminService;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
@@ -69,7 +71,7 @@ class AdminController extends Controller
     }
 
     public function userDetail(User $user){
-        $allOrders = $this->adminService->getOrderCollection($user);
+        $allOrders = $this->adminService->findOrderForSeller($user);
         return view('admin.viewSellerDetails',['seller'=>$user,'orders'=>$allOrders]);
     }
 
@@ -80,6 +82,17 @@ class AdminController extends Controller
         }else{
             return redirect()->back()->with('error', 'Failed to Delete ');
         }
+    }
+
+    public function getAllOrders(){
+        $orders = $this->adminService->allOrders();
+        return view('admin.viewAllOrders',['orders'=>$orders]);
+    }
+
+    public function orderDetail(Order $order){
+        $orders = $this->adminService->getOrderCollection($order);
+        return view('admin.viewOrderDetails',['orders'=>$orders]);
+
     }
 
 

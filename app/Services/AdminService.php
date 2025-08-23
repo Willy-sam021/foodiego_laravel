@@ -49,14 +49,24 @@ class AdminService{
         return $allUsers;
     }
 
-    public function getOrderCollection($user){
-        $allOrders = $this->orderRepo->getOrderCollection($user->id);
+    public function findOrderForSeller($user){
+        $allOrders = $this->orderRepo->findOrderForSeller($user->id);
+        return $allOrders;
+    }
+
+    public function getOrderCollection($order){
+        $allOrders = $this->orderRepo->getOrderCollection($order->id);
         return $allOrders;
     }
 
     public function deleteUser($user){
         $deletedUser = $this->userRepo->delete($user);
         return $deletedUser;
+    }
+
+    public function allOrders(){
+        $orders = $this->orderRepo->all();
+        return $orders;
     }
 
 

@@ -60,6 +60,11 @@
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">View Sellers</span>
                         </a>
 					</li>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('allOrders')}}">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">All Orders</span>
+                        </a>
+					</li>
 
 					<li class="sidebar-item active">
 						<form action="{{route('logout')}}" method="post" class="">

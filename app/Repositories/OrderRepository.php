@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Log;
 
 class OrderRepository{
 
+    public function all(){
+        $orders = Order::all();
+        return $orders;
+    }
 
     public function create($cart,$data){
 
@@ -55,8 +59,8 @@ class OrderRepository{
     }
 
      public function getOrderCollection($id){
-        $payment = Order::where('id',$id)->get();
-        return $payment;
+        $order = Order::where('id',$id)->get();
+        return $order;
     }
 
     public function findById($id){
