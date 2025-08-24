@@ -15,7 +15,10 @@ Route::middleware(['auth','seller'])->group(function () {
         return view('seller.sellerDashboard');
     })->name('seller.dashboard');
 
-    Route::get('/seller/order',[OrderController::class,'getOrders'])->name('seller.orders');
+    Route::get('seller/order',[SellerController::class,'getOrders'])->name('seller.orders');
+    Route::get('seller-order-details/{order}',[SellerController::class,'getOrderdetail'])->name('sellerOrderDetails');
+    Route::post('seller-delivery-date/{order}',[SellerController::class,'setDeliveryDate'])->name('setDeliveryDate');
+    Route::put('delivery-complete/{delivery?}',[SellerController::class,'deliveryComplete'])->name('deliveryComplete');
 
 
 });

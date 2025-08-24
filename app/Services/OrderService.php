@@ -40,17 +40,7 @@ class OrderService{
         return $order;
     }
 //seller fetch order
-    public function fetchOrders(){
-        $userId = Auth::user()->id;
-        $orders = $this->orderRepository->findOrderForSeller($userId);
-        if(!$orders){
-            Log::error('order not found');
-            return false;
-        }
-        return $orders;
-
-
-    }
+   
 
     public function getOrderCollection($id){
         $order = $this->orderRepository->getOrderCollection($id);

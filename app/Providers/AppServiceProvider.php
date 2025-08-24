@@ -9,8 +9,11 @@ use App\Repositories\SellerRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CartRepository;
+use App\Repositories\DeliveryRepository;
+
 use App\Repositories\OrderRepository;
 use App\Services\CartService;
+use App\Services\DeliveryService;
 use App\Services\OrderService;
 use App\Services\PaymentService;
 use App\Repositories\PaymentRepository;
@@ -37,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             return new CategoryService(new CategoryRepository);
         });
         $this->app->bind(SellerService::class, function () {
-            return new SellerService(new SellerRepository, new UserRepository);
+            return new SellerService(new SellerRepository, new UserRepository, new OrderRepository, new DeliveryRepository);
         });
         $this->app->bind(CartService::class, function(){
             return new CartService(new CartRepository,new ProductRepository );

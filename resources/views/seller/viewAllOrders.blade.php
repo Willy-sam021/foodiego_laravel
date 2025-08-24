@@ -26,28 +26,29 @@
         <tr>
           <th>Order ID</th>
           <th>Customer</th>
-          <th>Product</th>
           <th>Amount</th>
-          <th>Status</th>
+          <th>Order Status</th>
+          <th>Payment Method</th>
+          <th>Delivery Status</th>
           <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
 
             @forelse ($orders as $order )
-                @foreach ($order->items as $item )
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$order->user->name}}</td>
-                        <td>{{$item->product->name}}</td>
                         <td>{{$order->total_price}}</td>
                         <td><span class="seller-dashboard__status seller-dashboard__status--pending">{{$order->status}}</span></td>
+                        <td><span class="seller-dashboard__status seller-dashboard__status--pending">{{$order->payment_method}}</span></td>
+                        <td><span class="seller-dashboard__status seller-dashboard__status--pending">{{$order->delivery_status}}</span></td>
+                        {{-- <td><span class="seller-dashboard__status seller-dashboard__status--pending">{{$order->payment_status}}</span></td> --}}
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm seller-dashboard__btn">Confirm</button>
-                            <button class="btn btn-danger btn-sm seller-dashboard__btn">Cancel</button>
+                            <a href="{{route('sellerOrderDetails',['order'=>$order->id])}}" class="btn btn-success btn-sm seller-dashboard__btn">View more</a>
                         </td>
                     </tr>
-                @endforeach
+
             @empty
                <p class="alert alert-danger">No orders Yet</p>
 
@@ -58,6 +59,7 @@
   </div>
 
   <!-- Orders Cards (Mobile View) -->
+
   <div class="seller-dashboard__orders-cards">
     <div class="card mb-3 shadow-sm">
       <div class="card-body">

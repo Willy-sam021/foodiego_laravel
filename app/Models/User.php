@@ -65,6 +65,11 @@ public function products()
     return $this->hasMany(Product::class);
 }
 
+public function deliveries()
+{
+    return $this->hasMany(Delivery::class);
+}
+
 public function cart(){
     return $this->hasMany(Cart::class);
 }

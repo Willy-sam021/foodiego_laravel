@@ -46,10 +46,5 @@ class OrderController extends Controller
         return view ('order.confirmation',['orders'=> $order]);
     }
 
-    public function getOrders(){
-        $orders= $this->orderService->fetchOrders();
-        // dd($orders);
-        return view ('seller.viewAllOrders',['orders'=> $orders]);
-
-    }
+    
 }

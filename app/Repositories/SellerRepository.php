@@ -10,7 +10,7 @@ class SellerRepository implements IRepository{
     }
 
     public function findById($id){
-        $seller = Seller::find($id);
+        $seller = Seller::findOrFail($id);
         return $seller;
     }
 

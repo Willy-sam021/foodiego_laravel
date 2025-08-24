@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 class OrderRepository{
 
     public function all(){
-        $orders = Order::all();
+        $orders = Order::with(['delivery','payment','items','user'])->get();
         return $orders;
     }
 
@@ -59,17 +59,17 @@ class OrderRepository{
     }
 
      public function getOrderCollection($id){
-        $order = Order::where('id',$id)->get();
+        $order = Order::with(['delivery','payment','items','user'])->where('id',$id)->get();
         return $order;
     }
 
     public function findById($id){
 
-        $order = Order::findOrFail($id);
+        $order = Order::with(['delivery','payment','items','user'])->findOrFail($id);
         return $order;
     }
     public function getSingleOrder($id){
-        $order =Order::findOrFail($id);
+        $order =Order::with(['delivery','payment','items','user'])->findOrFail($id);
         return $order;
     }
 
@@ -92,6 +92,16 @@ class OrderRepository{
         ]);
 
         return $updated;
+    }
+
+    public function updateDeliveryDate($date, $order){
+        $order = $this->findById($order->id);
+        $order->update([
+            'delivery_date' => $date['delivery_date'],
+            'status' => OrderEnums::CONFIRMED->value,
+        ]);
+
+        return $order;
     }
 
 

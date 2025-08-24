@@ -50,31 +50,31 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exception) {
 
-         $exception->render(function (HttpException $exception) {
-            $statusCode = $exception->getStatusCode();
-            if ( $statusCode=== 404 ) {
-                if($exception->getPrevious() instanceof ModelNotFoundException){
-                    return response()->view('errors.404', [], 404);
-                }
-                return response()->view('errors.404', [], 404);
-            }
+        //  $exception->render(function (HttpException $exception) {
+        //     $statusCode = $exception->getStatusCode();
+        //     if ( $statusCode=== 404 ) {
+        //         if($exception->getPrevious() instanceof ModelNotFoundException){
+        //             return response()->view('errors.404', [], 404);
+        //         }
+        //         return response()->view('errors.404', [], 404);
+        //     }
 
-           if ($statusCode == 500) {
-            return response()->view('errors.500', [], 500);
-            }
+        //    if ($statusCode == 500) {
+        //     return response()->view('errors.500', [], 500);
+        //     }
 
-            if ($statusCode == 429) {
-            return response()->view('errors.429', [], 500);
-            }
+        //     if ($statusCode == 429) {
+        //     return response()->view('errors.429', [], 500);
+        //     }
 
-            if($statusCode == 433){
-                return response()->view('errors.433', [], 500);
-            }
-        });
+        //     if($statusCode == 433){
+        //         return response()->view('errors.433', [], 500);
+        //     }
+        // });
 
-        $exception->render(function(ModelNotFoundException $ex){
-            $model = class_basename($ex->getModel());
-             return response()->view('errors.404', [], 404);
-        });
+        // $exception->render(function(ModelNotFoundException $ex){
+        //     $model = class_basename($ex->getModel());
+        //      return response()->view('errors.404', [], 404);
+        // });
 
     })->create();

@@ -1,7 +1,11 @@
 <?php
 namespace App\Services;
+
+use App\Repositories\DeliveryRepository;
 use App\Repositories\SellerRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\OrderRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -9,10 +13,16 @@ use Illuminate\Support\Str;
 
 class SellerService {
 
-    protected $sellerRepository;
 
-    public function __construct(SellerRepository $sellerRepository, public UserRepository $userRepository) {
-        $this->sellerRepository = $sellerRepository;
+
+    public function __construct(
+        public SellerRepository $sellerRepository,
+        public UserRepository $userRepository,
+        public OrderRepository $orderRepository,
+        public DeliveryRepository $deliveryRepo,
+    )
+    {
+
     }
 
     public function getAllSellers(){
@@ -63,6 +73,42 @@ class SellerService {
     }
     public function deleteSeller($id){
         return $this->sellerRepository->delete($id);
+    }
+
+     public function fetchOrders(){
+        $userId = Auth::user()->id;
+        $orders = $this->orderRepository->findOrderForSeller($userId);
+        if(!$orders){
+            Log::error('order not found');
+            return false;
+        }
+        return $orders;
+
+    }
+
+    public function getOrderCollection($order){
+
+        $order = $this->orderRepository->getOrderCollection($order->id);
+        return $order;
+    }
+
+    public function deliveryDate($date, $order){
+        $deliveryData= $this->deliveryRepo->create($date, $order);
+        if(!$deliveryData){
+            return false;
+        }
+        return $deliveryData;
+    }
+
+    public function getDeliveryDeets($order){
+        // dd($order->id);
+        $delivery = $this->deliveryRepo->fetchOrderDelivery($order->id);
+        return $delivery;
+    }
+
+    public function deliveryComplete($data, $delivery){
+        $delivery = $this->deliveryRepo->completeDelivery($data['delivery_status'], $delivery);
+        return $delivery;
     }
 
 
